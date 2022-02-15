@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Döner Trainer</title>
+
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="components.js"></script>
+    <script type="text/javascript" src="ingredients.js"></script>
+    <script type="text/javascript" src="kitchen.js"></script>
+    <script type="text/javascript" src="people.js"></script>
+    <script type="text/javascript" src="order.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <!-- <link href="stats.css" rel="stylesheet"> -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+    <div style="display: flex; justify-content: space-around;">
+        <h1>Döner Trainer</h1>
+    </div>
+    <div style="display: flex; justify-content: space-around;">
+        <div class="container">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Budenconfiguration</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="noEmployees" class="form-label">Number of employees kitchen</label>
+                            <input type="number" class="form-control" id="noEmployees" placeholder="" value="4"
+                                required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="noEmployeesTheke" class="form-label">Number of employees Theke</label>
+                            <input type="number" class="form-control" id="noEmployeesTheke" placeholder="" value="4"
+                                required>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <label for="timeout" class="form-label">Customer Timeout</label>
+                            <input type="number" class="form-control" id="timeout" placeholder="" value="3000" required>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="mb-3">Orderconfiguration</h4>
+                    <div class="col-md-4">
+                        <label for="state" class="form-label">OrderType</label>
+                        <select class="form-select" id="order" required onchange="(e) => setOrderType(e)">
+                            <option value="döner">Döner</option>
+                            <option value="yufka">Yufka</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input checked type="checkbox" class="form-check-input" id="salad">
+                                <label class="form-check-label" for="salad">Salad</label>
+                            </div>
+                            <div class="form-check">
+                                <input checked type="checkbox" class="form-check-input" id="cabbage">
+                                <label class="form-check-label" for="cabbage">Cabbage</label>
+                            </div>
+                            <div class="form-check">
+                                <input checked type="checkbox" class="form-check-input" id="sauce">
+                                <label class="form-check-label" for="sauce">Sauce</label>
+                            </div>
+                            <div class="form-check">
+                                <input checked type="checkbox" class="form-check-input" id="onion">
+                                <label class="form-check-label" for="onion">Onion</label>
+                            </div>
+                            <div class="form-check">
+                                <input checked type="checkbox" class="form-check-input" id="tomato">
+                                <label class="form-check-label" for="tomato">Tomato</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="my-4">
+                    <button class="w-100 btn btn-success btn-lg" id="mainButton" type="button"
+                        onclick="handleButtonMyClick()">Start Simulation</button>
+            </div>
+
+            </form>
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Customer Happiness</h5>
+                    <div class="progress" style="margin-top: 20px;">
+                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100" id="customerHappiness">100%</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Employee Happiness</h5>
+                    <div class="progress" style="margin-top: 20px;">
+                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100" id="employeeHappiness">100%</div>
+                    </div>
+                </div>
+                <div class="card card-stats mb-4 mb-xl-0 col-md-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Döner</h5>
+                                <span class="h2 font-weight-bold mb-0" id="döner">0</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-stats mb-4 mb-xl-0 col-md-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Yufka</h5>
+                                <span class="h2 font-weight-bold mb-0" id="yufka">0</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="display: flex; justify-content: space-around; margin-top: 50px;">
+        <canvas id="canvas" width=1280 height=720;></canvas>
+    </div>
+</body>
+
+
+</html>
