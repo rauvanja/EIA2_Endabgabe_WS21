@@ -9,7 +9,7 @@ class Meat extends StaticDrawableComponent {
         let centerX = this.startX + this.width / 2;
         let centerY = this.startY + this.height / 2;
         ctx.beginPath();
-        ctx.fillStyle = "brown";
+        ctx.fillStyle = 'brown';
         ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
         ctx.fill();
     }
@@ -85,35 +85,35 @@ class NoIngredient extends Ingredient{}
 class Salat extends Ingredient {
     constructor() {
         super();
-        this.color = "green";
-        this.text = "Salad";
+        this.color = 'green';
+        this.text = 'Salad';
     }
 }
 class Cabbage extends Ingredient {
     constructor() {
         super();
-        this.color = "purple";
-        this.text = "Cabbage";
+        this.color = 'purple';
+        this.text = 'Cabbage';
     }
 }
 class Sauce extends Ingredient {
     constructor() {
         super();
-        this.color = "#FFA500";
-        this.text = "Sauce";
+        this.color = '#FFA500';
+        this.text = 'Sauce';
     }
 }
 class Tomato extends Ingredient {
     constructor() {
         super();
-        this.color = "red";
-        this.text = "Tomato";
+        this.color = 'red';
+        this.text = 'Tomato';
     }
 }
 class Onion extends Ingredient {
     constructor() {
         super();
-        this.color = "yellow";
-        this.text = "Onion";
+        this.color = 'yellow';
+        this.text = 'Onion';
     }
 }

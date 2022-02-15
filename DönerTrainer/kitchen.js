@@ -1,9 +1,19 @@
 "use strict";
 class KitchenComponent extends StaticDrawableComponent {
-    constructor() {
-        super(...arguments);
-        this.eventTarget = new EventTarget();
-    }
+    employees;
+    saladTarget;
+    cabbageTarget;
+    sauceTarget;
+    tomatoTarget;
+    onionTarget;
+    thekeTarget;
+    saladHolder;
+    cabbageHolder;
+    sauceHolder;
+    tomatoHolder;
+    onionHolder;
+    placeHolder;
+    eventTarget = new EventTarget();
     setEmployees(employees) {
         this.employees = employees;
     }
@@ -70,6 +80,7 @@ class KitchenComponent extends StaticDrawableComponent {
     }
 }
 class Theke extends KitchenComponent {
+    currentOrder;
     constructor(color, startX, startY, width, height) {
         super(color, startX, startY - 1, width, height + 1);
         this.placeHolder = new StaticDrawableComponent('grey', startX, startY, 5 * width / 10, height);
@@ -170,6 +181,9 @@ class Theke extends KitchenComponent {
     }
 }
 class Kitchen extends KitchenComponent {
+    meat;
+    placeHolder;
+    theke;
     constructor(color, startX, startY, width, height, theke) {
         super(color, startX, startY, width, height);
         this.theke = theke;

@@ -16,6 +16,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 class Order {
+    state;
+    type;
+    missingIngredients;
+    addedIngredients;
+    centerX;
+    centerY;
+    radius;
+    lengthIngredients;
+    eventTarget;
     constructor(type, ingredients, centerX, centerY, radius) {
         this.state = OrderState.open;
         this.type = type;

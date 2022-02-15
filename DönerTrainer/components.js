@@ -1,5 +1,10 @@
 "use strict";
 class StaticDrawableComponent {
+    color;
+    startX;
+    startY;
+    height;
+    width;
     constructor(color, startX, startY, width, height) {
         this.color = color;
         this.startX = startX;

@@ -80,7 +80,7 @@ var Döner;
         let customerHappy = 0;
         let employeeHappy = 0;
         for (let e of theke.employees) {
-            if (t) {
+            if (e.mood == Mood.happy || e.mood == Mood.chilled || e.mood == Mood.satisfied) {
                 employeeHappy++;
             }
         }
@@ -112,7 +112,7 @@ var Döner;
             let [cust] = customers.splice(0, 1);
             if (cust) {
                 if (cust.order.type == OrderType.döner) {
-                    t;
+                    setDöners(numberOfDöners + 1);
                 }
                 else {
                     setYufkas(numberOfYufkas + 1);

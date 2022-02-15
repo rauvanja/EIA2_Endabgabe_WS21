@@ -25,6 +25,12 @@ function getEmoji(mood) {
     }
 }
 class Person {
+    mood;
+    x;
+    y;
+    target;
+    eventTarget;
+    reachedTargetListener;
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -81,9 +87,11 @@ class Person {
     }
 }
 class Customer extends Person {
+    mood = Mood.happy;
+    mode;
+    order;
     constructor(x, y, order) {
         super(x, y);
-        this.mood = Mood.happy;
         this.order = order;
         this.setWaiting();
     }
@@ -107,11 +115,12 @@ class Customer extends Person {
     }
 }
 class Employee extends Person {
+    mood = Mood.chilled;
+    state = "idle";
+    eventTarget = new EventTarget();
+    ingredient;
     constructor(x, y) {
         super(x, y);
-        this.mood = Mood.chilled;
-        this.state = "idle";
-        this.eventTarget = new EventTarget();
         this.ingredient = new NoIngredient();
         setTimeout(() => {
             if (Math.random() < 0.7) {
